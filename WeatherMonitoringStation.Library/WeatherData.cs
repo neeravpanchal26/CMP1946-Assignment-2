@@ -1,51 +1,80 @@
-﻿namespace WeatherMonitoringStation.Library;
-public class WeatherData : ISubject
+﻿/// <summary>
+/// Represents a singleton class for weather data monitoring.
+/// </summary>
+namespace WeatherMonitoringStation.Library
 {
-    private static WeatherData _instance;
-    private List<IObserver> observers;
-    private float temperature;
-    private float humidity;
-    private float pressure;
-    private Random random;
-
-    private WeatherData()
+    /// <summary>
+    /// Represents the weather data class.
+    /// </summary>
+    public class WeatherData : ISubject
     {
-        observers = new List<IObserver>();
-        random = new Random();
-    }
+        private static WeatherData _instance;
+        private List<IObserver> observers;
+        private float temperature;
+        private float humidity;
+        private float pressure;
+        private Random random;
 
-    public static WeatherData Get_instance()
-    {
-        if (_instance == null)
+        /// <summary>
+        /// Private constructor to initialize WeatherData instance.
+        /// </summary>
+        private WeatherData()
         {
-            _instance = new WeatherData();
+            observers = new List<IObserver>();
+            random = new Random();
         }
-        return _instance;
-    }
 
-    public void UpdateWeatherData()
-    {
-        temperature = random.Next(0, 50);
-        humidity = random.Next(0, 100);
-        pressure = random.Next(900, 1100);
-        NotifyObservers();
-    }
-
-    public void RegisterObserver(IObserver observer)
-    {
-        observers.Add(observer);
-    }
-
-    public void RemoveObserver(IObserver observer)
-    {
-        observers.Remove(observer);
-    }
-
-    public void NotifyObservers()
-    {
-        foreach (var observer in observers)
+        /// <summary>
+        /// Gets the instance of WeatherData class.
+        /// </summary>
+        /// <returns>The singleton instance of WeatherData class.</returns>
+        public static WeatherData Get_instance()
         {
-            observer.Update(temperature, humidity, pressure);
+            if (_instance == null)
+            {
+                _instance = new WeatherData();
+            }
+            return _instance;
+        }
+
+        /// <summary>
+        /// Updates weather data with random values and notifies observers.
+        /// </summary>
+        public void UpdateWeatherData()
+        {
+            temperature = random.Next(0, 50);
+            humidity = random.Next(0, 100);
+            pressure = random.Next(900, 1100);
+            NotifyObservers();
+        }
+
+        /// <summary>
+        /// Registers an observer.
+        /// </summary>
+        /// <param name="observer">The observer to be registered.</param>
+        public void RegisterObserver(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        /// <summary>
+        /// Removes an observer.
+        /// </summary>
+        /// <param name="observer">The observer to be removed.</param>
+        public void RemoveObserver(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        /// <summary>
+        /// Notifies all registered observers with current weather data.
+        /// </summary>
+        public void NotifyObservers()
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update(temperature, humidity, pressure);
+            }
         }
     }
 }

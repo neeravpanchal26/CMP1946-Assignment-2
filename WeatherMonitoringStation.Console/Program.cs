@@ -1,10 +1,23 @@
-﻿namespace WeatherMonitoringStation.Console;
+﻿/// <summary>
+/// Represents a namespace for the WeatherMonitoringStation.Console application.
+/// </summary>
+namespace WeatherMonitoringStation.Console;
+
 using System;
 using WeatherMonitoringStation.Library;
 using WeatherMonitoringStation.ObserverDecorator;
 using WeatherMonitoringStation.Observer;
+
+/// <summary>
+/// Represents the main weather station class responsible for creating displays.
+/// </summary>
 public class WeatherStation
 {
+    /// <summary>
+    /// Creates a display based on the specified type.
+    /// </summary>
+    /// <param name="displayType">The type of display to create.</param>
+    /// <returns>An instance of the specified display type.</returns>
     public static IDisplay CreateDisplay(string displayType)
     {
         switch (displayType.ToLower())
@@ -20,8 +33,16 @@ public class WeatherStation
         }
     }
 }
+
+/// <summary>
+/// Represents the entry point of the application.
+/// </summary>
 class Program
 {
+    /// <summary>
+    /// The main method of the program.
+    /// </summary>
+    /// <param name="args">Command-line arguments.</param>
     static void Main(string[] args)
     {
         WeatherData weatherData = WeatherData.Get_instance();
