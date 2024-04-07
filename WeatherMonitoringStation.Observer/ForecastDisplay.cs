@@ -1,3 +1,5 @@
+namespace WeatherMonitoringStation.Observer;
+using WeatherMonitoringStation.Library;
 using System;
 public class ForecastDisplay : IObserver, IDisplay
 {

@@ -1,4 +1,6 @@
-﻿public class CurrentConditionsDisplay : IObserver, IDisplay
+﻿namespace WeatherMonitoringStation.ObserverDecorator;
+using WeatherMonitoringStation.Library;
+public class CurrentConditionsDisplay : IObserver, IDisplay
 {
     private float temperature;
     private float humidity;

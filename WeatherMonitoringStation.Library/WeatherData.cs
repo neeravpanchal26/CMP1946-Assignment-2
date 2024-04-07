@@ -1,4 +1,5 @@
-﻿public class WeatherData : ISubject
+﻿namespace WeatherMonitoringStation.Library;
+public class WeatherData : ISubject
 {
     private static WeatherData _instance;
     private List<IObserver> observers;

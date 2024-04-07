@@ -1,3 +1,4 @@
+namespace WeatherMonitoringStation.Library;
 public interface ISubject
 {
     void RegisterObserver(IObserver observer);
