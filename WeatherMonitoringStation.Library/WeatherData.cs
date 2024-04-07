@@ -1,6 +1,6 @@
 ﻿public class WeatherData : ISubject
 {
-    private static WeatherData instance;
+    private static WeatherData _instance;
     private List<IObserver> observers;
     private float temperature;
     private float humidity;
@@ -13,13 +13,13 @@
         random = new Random();
     }
 
-    public static WeatherData GetInstance()
+    public static WeatherData Get_instance()
     {
-        if (instance == null)
+        if (_instance == null)
         {
-            instance = new WeatherData();
+            _instance = new WeatherData();
         }
-        return instance;
+        return _instance;
     }
 
     public void UpdateWeatherData()
